@@ -4,7 +4,7 @@
 
     <groupId>com.edwardraff</groupId>
     <artifactId>JSATFX</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
     <packaging>jar</packaging>
 
     <name>JSATFX</name>
@@ -31,8 +31,23 @@
 
     <organization>
         <!-- Used as the 'Vendor' for JNLP generation -->
-        <name>Your Organisation</name>
+        <name>Edward Raff</name>
     </organization>
+    
+    <licenses>
+        <license>
+            <name>GNU General Public License Version 3 (GPL 3)</name>
+            <url>https://www.gnu.org/licenses/gpl.txt</url>
+        </license>
+    </licenses>
+    
+    <developers>
+        <developer>
+            <name>Edward Raff</name>
+            <email>raff.edward@gmail.com</email>
+            <url>http://www.edwardraff.com/</url>
+        </developer>
+    </developers>
 
     <build>
         <plugins>
