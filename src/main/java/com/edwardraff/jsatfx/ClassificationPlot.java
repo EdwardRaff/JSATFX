@@ -124,25 +124,28 @@ public class ClassificationPlot<X extends Number, Y extends Number> extends Scat
                     double y_val = getYAxis().getValueForDisplay(topMost+j).doubleValue();
 
                     DataPoint dp = new DataPoint(DenseVector.toDenseVec(x_val, y_val));
-                    CategoricalResults classification = classifier.classify(dp);
-                    if(hard)
+                    if(classifier != null)
                     {
-                        graphics.setFill(colors[classification.mostLikely()]);
-                    }
-                    else
-                    {
-                        double R = 0, G = 0,B = 0;
-                        for(int k = 0; k < colors.length; k++)
+                        CategoricalResults classification = classifier.classify(dp);
+                        if(hard)
                         {
-                            R += colors[k].getRed()*colors[k].getRed()*classification.getProb(k)*65025;
-                            G += colors[k].getGreen()*colors[k].getGreen()*classification.getProb(k)*65025;
-                            B += colors[k].getBlue()*colors[k].getBlue()*classification.getProb(k)*65025;
-                            
+                            graphics.setFill(colors[classification.mostLikely()]);
                         }
+                        else
+                        {
+                            double R = 0, G = 0,B = 0;
+                            for(int k = 0; k < colors.length; k++)
+                            {
+                                R += colors[k].getRed()*colors[k].getRed()*classification.getProb(k)*65025;
+                                G += colors[k].getGreen()*colors[k].getGreen()*classification.getProb(k)*65025;
+                                B += colors[k].getBlue()*colors[k].getBlue()*classification.getProb(k)*65025;
 
-                        graphics.setFill(Color.rgb((int)sqrt(R), (int)sqrt(G), (int)sqrt(B), backgroundOpacity));
-                   }
-                    graphics.fillRect(i, j, resolution, resolution);
+                            }
+
+                            graphics.setFill(Color.rgb((int)sqrt(R), (int)sqrt(G), (int)sqrt(B), backgroundOpacity));
+                        }
+                        graphics.fillRect(i, j, resolution, resolution);
+                    }
                 }
                         
             canvas.resizeRelocate(mid_x - (w / 2), mid_y - (h / 2), w, h);
