@@ -79,7 +79,9 @@ public class Plot
         double range = max-min;
         min -= range*0.05;
         max += range*0.05;
-        NumberAxis xAxis = new NumberAxis(name.trim(), min, max, getTick(xVals));
+        NumberAxis xAxis = (name == null) ? 
+                new NumberAxis(min, max, getTick(xVals)) :
+                new NumberAxis(name.trim(), min, max, getTick(xVals));
         return xAxis;
     }
     
